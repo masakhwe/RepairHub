@@ -1,0 +1,16 @@
+{% extends "repairme/main.html" %}
+{% block content %}
+    <div class="row">
+        <div class="col-md-6">
+            <div class="content-section">
+                <h1>You have been logged out</h1>
+                
+                <div class="border-top pt-3">
+                    <small class='text-muted'>
+                        <a href="{% url 'login' %}">Login Again</a>
+                    </small>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock content%}
