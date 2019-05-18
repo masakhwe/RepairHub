@@ -20,7 +20,7 @@ class TestUserRegistration(TestCase):
 
     def test_can_save_user_information(self):
         response = self.client.post(reverse(views.register), data={'username': 'testuser1',
-                                                               'email': 'test@mail.com', 'password': 'assert2019'})
+                                                                   'email': 'test@mail.com', 'password': 'assert2019'})
         assert response.status_code == 302
         assert User.objects.count() == 1
 
@@ -30,3 +30,7 @@ class TestUserRegistration(TestCase):
         assert test_user.email == 'test@mail.com'
         assert test_user.password == 'assert2019'
 
+    def test_can_redirect_to_login(self):
+        response = self.client.post(reverse(views.register), data={'username': 'testuser1',
+                                                                   'email': 'test@mail.com', 'password': 'assert2019'})
+        assert response['location'] == 'login'
