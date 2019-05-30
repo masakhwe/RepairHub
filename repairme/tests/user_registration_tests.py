@@ -16,7 +16,7 @@ class TestUserRegistration(TestCase):
 
     def test_right_template_used(self):
         response = self.client.get(reverse(views.register))
-        self.assertTemplateUsed(response, 'register.html')
+        self.assertTemplateUsed(response, 'repairme/register.html')
 
     def test_can_save_user_information(self):
         response = self.client.post(reverse(views.register), data={'username': 'testuser1',
