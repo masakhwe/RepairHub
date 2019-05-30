@@ -33,4 +33,4 @@ class TestUserRegistration(TestCase):
     def test_can_redirect_to_login(self):
         response = self.client.post(reverse(views.register), data={'username': 'testuser1',
                                                                    'email': 'test@mail.com', 'password': 'assert2019'})
-        assert response['location'] == 'login'
+        assert response['location'] == '/login/'
