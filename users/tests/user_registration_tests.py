@@ -1,8 +1,7 @@
-from django.http import HttpResponse
 from django.urls import reverse
 from django.test import TestCase
 from django.contrib.auth.models import User
-from repairme import views
+from users import views
 
 
 class TestUserRegistration(TestCase):
@@ -16,7 +15,7 @@ class TestUserRegistration(TestCase):
 
     def test_right_template_used(self):
         response = self.client.get(reverse(views.register))
-        self.assertTemplateUsed(response, 'repairme/register.html')
+        self.assertTemplateUsed(response, 'users/register.html')
 
     def test_can_save_user_information(self):
         response = self.client.post(reverse(views.register), data={'username': 'testuser1',
