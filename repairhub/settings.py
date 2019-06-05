@@ -81,7 +81,7 @@ DATABASES = {
         'NAME': 'repairhub',
         'USER': 'MANU',
         'PASSWORD': 'manu2741',
-        'HOST': '127.0.0.1',
+        'HOST': '192.168.43.203',
         'PORT': '5432',
     }
 }
