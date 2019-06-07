@@ -23,7 +23,7 @@ before_script:
   - psql -c "CREATE DATABASE mydb;" -U postgres
   - psql -c "CREATE USER manu1 PASSWORD 'password';" -U postgres
   - psql -c "ALTER USER manu1 CREATEDB;" -U postgres
-  - psql -c "GRANT ALL PRIVILEGES on DATABASE database to manu1;" -U postgres
+  - psql -c "GRANT ALL PRIVILEGES on DATABASE mydb to manu1;" -U postgres
 
 script:
    - python manage.py migrate
