@@ -11,7 +11,7 @@ env:
 
 before_install:
   - export DJANGO_SETTINGS_MODULE=repairhub.settings
-  - export PYTHONPATH=$HOME/builds/masakhwe/repairhub
+  - export PYTHONPATH="home/travis/build/masakhwe/repairhub"
   - export PIP_USE_MIRRORS=true
 
 install:
@@ -21,6 +21,10 @@ install:
 
 before_script:
   - psql -c "CREATE DATABASE mydb;" -U postgres
+  - psql -c "CREATE USER manu1 PASSWORD 'password';" -U postgres
+  - psql -c "ALTER USER manu1 CREATEDB;" -U postgres
+  - psql -c "GRANT ALL PRIVILEGES on DATABASE database to manu1;" -U postgres
 
 script:
-   - python manage.py
+   - python manage.py migrate
+   - pytest
