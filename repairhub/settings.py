@@ -90,7 +90,7 @@ if 'TRAVIS' in os.environ:
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'repairhub',
+        'NAME': 'repairhb',
         'USER': 'manu1',
         'PASSWORD': 'password',
         'HOST': '127.0.0.1',
