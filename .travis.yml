@@ -23,7 +23,7 @@ before_script:
   - psql -c "CREATE DATABASE repairhub;" -U postgres
   - psql -c "CREATE USER MANU PASSWORD 'manu2741';" -U postgres
   - psql -c "ALTER USER MANU CREATEDB;" -U postgres
-  - psql -c "GRANT ALL PRIVILEGES on DATABASE repairhub to manu1;" -U postgres
+  - psql -c "GRANT ALL PRIVILEGES on DATABASE repairhub to MANU;" -U postgres
 
 script:
    - python manage.py migrate
