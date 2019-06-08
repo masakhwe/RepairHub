@@ -27,7 +27,7 @@ before_script:
 
 script:
    - python manage.py migrate
-   - pytest -v
+   - pytest -v --cov=users/tests/
 
 after_success:
   - coveralls
