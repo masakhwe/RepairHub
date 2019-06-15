@@ -1,0 +1,15 @@
+ body {
+  background: #fafafa;
+  color: #333333;
+  margin-top: 5rem;
+}
+
+.bg-steel {
+  background-color: #30302f;
+}
+
+.brand-name {
+    color: #fff60c;
+    border-color: #f2f2ea;
+}
+

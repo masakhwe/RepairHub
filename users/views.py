@@ -1,17 +1,33 @@
 from django.shortcuts import render, redirect
-from django.contrib.auth.models import User
+from django.contrib import messages
+from .forms import UserRegistrationForm  # custom registration form
 
 
 def register(request):
-    if request.method == 'POST':
-        user_name = request.POST.get('username')
-        e_mail = request.POST.get('email')
-        pass_word = request.POST.get('password')
+    if request.method == "POST":
+        form = UserRegistrationForm(request.POST)
+        if form.is_valid():
+            form.save()  # saves post data to the database
+            username = form.cleaned_data.get('username')
+            messages.success(request, f'Successfully created account for {username}')
+            return redirect('login')
 
-        User.objects.create(username=user_name, email=e_mail, password=pass_word)
-        return redirect('login')
+    else:
+        form = UserRegistrationForm()
+    return render(request, 'users/register.html', {'form': form})
 
-    return render(request, 'users/register.html')
+
+    '''if request.method == 'POST':
+                    user_name = request.POST.get('username')
+                    e_mail = request.POST.get('email')
+                    pass_word = request.POST.get('password')
+
+                    User.objects.create(username=user_name,
+                    email=e_mail, password=pass_word)
+
+                    return redirect('login')
+ 
+                return render(request, 'users/register.html')'''
 
 
 def login(request):
