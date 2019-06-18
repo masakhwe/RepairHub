@@ -2,7 +2,7 @@ from django.urls import reverse
 from django.test import TestCase
 from django.contrib.auth.models import User
 from users.forms import UserRegistrationForm
-from users.views import register, login
+from users.views import register
 
 
 class TestUserRegistration(TestCase):
@@ -55,6 +55,6 @@ class TestUserRegistration(TestCase):
         })
 
         self.assertRedirects(response,
-                             reverse(login),
+                             reverse('login'),
                              status_code=302,
                              target_status_code=200)

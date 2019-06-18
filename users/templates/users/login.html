@@ -1,4 +1,21 @@
 {% extends "repairme/base.html"%}
+{% load crispy_forms_tags %} <!--enables use of crispy forms styling in the register form-->
 {% block content %}
-    <h3>Login here --> form coming soon</h3>
+    <div class="content-section register-form">
+        <form method="POST" class="border rounded p-2">
+            {% csrf_token %}
+            <fieldset class="form-group">
+                <legend class="border-bottom mb-4 text-center">Log in</legend>
+                {{form|crispy}}
+            </fieldset>
+            <div class="form-group">
+                <button class="btn btn-outline-info" type="submit">Log in</button>
+            </div>
+        </form>
+        <div classs="border-top pt-3">
+            <small class="text-muted">
+                Not yet registered? <a class="ml-2" href="{% url 'register' %}">register here</a>
+            </small>
+        </div>
+    </div>
 {% endblock content %}

@@ -1,0 +1,12 @@
+{% extends "repairme/base.html"%}
+{% block content %}
+    <div class="container">
+        <h3>You have been logged out</h3>
+
+        <div classs="border-top pt-3">
+            <small class="text-muted">
+                <a href="{% url 'login' %}">Login Again</a>
+            </small>
+        </div>
+    </div>
+{% endblock content %}

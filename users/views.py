@@ -9,26 +9,18 @@ def register(request):
         if form.is_valid():
             form.save()  # saves post data to the database
             username = form.cleaned_data.get('username')
-            messages.success(request, f'Successfully created account for {username}')
+            messages.success(request,
+                             f'Successfully created account for {username}')
             return redirect('login')
 
     else:
         form = UserRegistrationForm()
     return render(request, 'users/register.html', {'form': form})
 
-
-    '''if request.method == 'POST':
-                    user_name = request.POST.get('username')
-                    e_mail = request.POST.get('email')
-                    pass_word = request.POST.get('password')
-
-                    User.objects.create(username=user_name,
-                    email=e_mail, password=pass_word)
-
-                    return redirect('login')
- 
-                return render(request, 'users/register.html')'''
-
-
+'''
 def login(request):
-    return render(request, 'users/login.html')
+    return render(request, 'users/login.html')'''
+
+
+def profile(request):
+    return render(request, 'users/profile.html')
