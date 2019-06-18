@@ -147,4 +147,9 @@ STATIC_URL = '/static/'
 
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
+# enables redirect to home page afte a user successfully logs in
 LOGIN_REDIRECT_URL = 'repairme-home'
+
+'''enables redirect to login page when non authenticated user
+trys to access restricted views'''
+LOGIN_URL = 'login'
