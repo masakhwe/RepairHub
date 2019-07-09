@@ -1,8 +1,10 @@
 from django.test import TestCase
 from django.urls import reverse
 from django.contrib.auth.models import User
+import pytest
 
 
+@pytest.mark.skip(reason='need to concentrate on repirme app tests')
 class TestUserLogin(TestCase):
     '''
         This class runs checks on user login
