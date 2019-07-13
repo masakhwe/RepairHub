@@ -1,17 +1,18 @@
-from django import forms
-from .models import Repairs
+from django.forms import ModelForm
+from repairme.models import Repairs
 
 
-class RepairRequestForm(forms.Form):
+class RepairRequestForm(ModelForm):
 
     class Meta:
         model = Repairs
 
         fields = [
-            'Customer Name',
-            'Item Name',
-            'Serial Number',
-            'Manufacturer',
-            'Photo',
-            'Fault Date',
+            'owner',
+            'device_name',
+            'category',
+            'serial_number',
+            'manufacturer',
+            'description',
+            'photo'
         ]

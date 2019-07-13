@@ -1,0 +1,16 @@
+{% extends "repairme/base.html" %}
+{% load  crispy_forms_tags %}
+{% block content %}
+    <div class="content-section register-form">
+        <form method="POST" class="border rounded p-2" action='{{ action_url }}' enctype='multipart/form-data'><!-- Ensures uploaded images via the form are correctly saved-->
+            {% csrf_token %}
+            <fieldset class="form-group">
+                <legend class="border-bottom mb-4 text-center"><strong>New Repair Request</strong></legend>
+                {{form|crispy}}
+            </fieldset>
+            <div class="form-group">
+                <button class="btn btn-outline-info" type="submit">Save</button>
+            </div>
+        </form>
+    </div>
+{% endblock content %}
