@@ -6,7 +6,7 @@ from users.views import register
 import pytest
 
 
-@pytest.mark.skip(reason='need to concentrate on repirme app tests')
+# @pytest.mark.skip(reason='need to concentrate on repirme app tests')
 class TestUserRegistration(TestCase):
     """
     Tests if a new user can successfuly register and create a new account
