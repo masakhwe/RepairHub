@@ -20,7 +20,7 @@ class Repairs(models.Model):
     category = models.ForeignKey(Category, on_delete=models.CASCADE)
     serial_number = models.CharField('Serial Number', max_length=60)
     manufacturer = models.CharField('Manufacturer', max_length=50)
-    description = models.TextField('Fault Description', max_length=250)
+    description = models.TextField('Fault Description', max_length=100)
     photo = models.ImageField(upload_to='repair_pics', default='default.png')
     fault_date = models.DateField(auto_now_add=True)
     date_reported = models.DateTimeField(auto_now_add=True)

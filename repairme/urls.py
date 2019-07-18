@@ -1,7 +1,9 @@
 from django.urls import path
-from .views import home, repair_request
+from .views import HomeView, RepairRequestView
 
 urlpatterns = [
-    path('', home, name='repairme-home'),
-    path('repair_request', repair_request, name='repairme-request'),
+    path('', HomeView.as_view(), name='repairme-home'),
+
+    path('repair_request', RepairRequestView.as_view(),
+         name='repairme-request'),
 ]

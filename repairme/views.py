@@ -1,23 +1,17 @@
-from django.shortcuts import render, redirect
-# from django.contrib.auth.models import User
+from django.views.generic.edit import CreateView
+from django.views.generic import TemplateView
+from repairme.models import Repairs
 from repairme.forms import RepairRequestForm
-from django.contrib import messages
+from django.contrib.messages.views import SuccessMessageMixin
 
 
-def home(request):
-    return render(request, 'repairme/home.html')
+class RepairRequestView(SuccessMessageMixin, CreateView):
+    model = Repairs
+    form_class = RepairRequestForm
+    template_name = 'repairme/repair_request.html'
+    success_url = '/'
+    success_message = 'Your Repair Request was Successfully Saved'
 
 
-def repair_request(request):
-    if request.method == "POST":
-        form = RepairRequestForm(request.POST, request.FILES)
-        if form.is_valid():
-            form.save()
-
-            messages.success(request,
-                             "Your Repair Request was Successfully saved")
-            return redirect('repairme-home')
-    else:
-        form = RepairRequestForm()
-
-    return render(request, 'repairme/repair_request.html', {'form': form})
+class HomeView(TemplateView):
+    template_name = 'repairme/home.html'

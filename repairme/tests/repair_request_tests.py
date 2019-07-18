@@ -3,8 +3,6 @@ from django.test import TestCase
 from repairme.models import Repairs, Category
 from django.contrib.auth.models import User
 from repairme.forms import RepairRequestForm
-from repairme.views import repair_request
-# from django.core.files.uploadedfile import SimpleUploadedFile
 
 
 class TestRepairRequestRegistration(TestCase):
@@ -27,19 +25,15 @@ class TestRepairRequestRegistration(TestCase):
             'manufacturer': 'samsong',
             'description': 'detailed description',
         }
-        '''
-        file_data = {'photo': SimpleUploadedFile('test_image.jpeg',
-                                                 open('media/', 'rb'),
-                                                 content_type='image/jpeg')}
-        '''
+
         self.form = RepairRequestForm(data)
 
     def test_repair_request_page_loads_successfully(self):
-        response = self.client.get(reverse(repair_request))
+        response = self.client.get(reverse('repairme-request'))
         assert response.status_code == 200
 
     def test_right_template_used(self):
-        response = self.client.get(reverse(repair_request))
+        response = self.client.get(reverse('repairme-request'))
         self.assertTemplateUsed(response, 'repairme/repair_request.html')
 
     def test_form_is_valid(self):
@@ -52,7 +46,6 @@ class TestRepairRequestRegistration(TestCase):
         assert form_saved.description == 'detailed description'
         assert form_saved.photo == 'default.png'
 
-    # @pytest.mark.skip()
     def test_repair_request_info_can_be_saved_to_db(self):
         self.form.save()
         rep = Repairs.objects.all().first()
@@ -64,9 +57,8 @@ class TestRepairRequestRegistration(TestCase):
         assert rep.description == 'detailed description'
         assert rep.photo == 'default.png'
 
-    # @pytest.mark.skip()
     def test_can_redirect_to_homepage(self):
-        response = self.client.post(reverse(repair_request), data={
+        response = self.client.post(reverse('repairme-request'), data={
             'owner': self.owner.id,
             'device_name': 'sakara',
             'category': self.category.id,

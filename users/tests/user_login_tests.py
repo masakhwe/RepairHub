@@ -3,7 +3,6 @@ from django.urls import reverse
 from django.contrib.auth.models import User
 
 
-# @pytest.mark.skip(reason='need to concentrate on repirme app tests')
 class TestUserLogin(TestCase):
     '''
         This class runs checks on user login
