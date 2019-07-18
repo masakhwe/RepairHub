@@ -17,7 +17,7 @@ class TestRepairRequestRegistration(TestCase):
 
         self.category = Category.objects.create(name='testcategory')
 
-        data = {
+        self.data = {
             'owner': self.owner.id,
             'device_name': 'sakara',
             'category': self.category.id,
@@ -26,7 +26,7 @@ class TestRepairRequestRegistration(TestCase):
             'description': 'detailed description',
         }
 
-        self.form = RepairRequestForm(data)
+        self.form = RepairRequestForm(self.data)
 
     def test_repair_request_page_loads_successfully(self):
         response = self.client.get(reverse('repairme-request'))
@@ -58,14 +58,8 @@ class TestRepairRequestRegistration(TestCase):
         assert rep.photo == 'default.png'
 
     def test_can_redirect_to_homepage(self):
-        response = self.client.post(reverse('repairme-request'), data={
-            'owner': self.owner.id,
-            'device_name': 'sakara',
-            'category': self.category.id,
-            'serial_number': 'vssvsvwv52qa',
-            'manufacturer': 'samsong',
-            'description': 'detailed description',
-        })
+        response = self.client.post(reverse('repairme-request'),
+                                    data=self.data)
 
         self.assertRedirects(response,
                              reverse('repairme-home'),
