@@ -92,8 +92,8 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'repairhub',
-        'USER': 'MANU',
-        'PASSWORD': 'manu2741',
+        'USER': 'manu1',
+        'PASSWORD': 'password',
         'HOST': '127.0.0.1',
         'PORT': '5432',
     }
@@ -151,9 +151,9 @@ MEDIA_URL = '/media/'
 
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
-# enables redirect to home page afte a user successfully logs in
+# enables redirect to home page after a user successfully logs in
 LOGIN_REDIRECT_URL = 'repairme-home'
 
-'''enables redirect to login page when non authenticated user
+'''enables redirect to login page when non-authenticated user
 trys to access restricted views'''
 LOGIN_URL = 'login'
