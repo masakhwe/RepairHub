@@ -2,7 +2,6 @@ from django.urls import reverse
 from django.test import TestCase
 from repairme.models import Repairs, Category
 from django.contrib.auth.models import User
-from repairme.forms import RepairRequestForm
 
 
 class TestRepairRequestRegistration(TestCase):
@@ -11,9 +10,9 @@ class TestRepairRequestRegistration(TestCase):
     """
 
     def setUp(self):
-        self.owner = User.objects.create(username='testuser',
-                                         email='test@mail.com',
-                                         password='tester247')
+        self.owner = User.objects.create_user(username='testuser',
+                                              email='test@mail.com',
+                                              password='tester247')
 
         self.category = Category.objects.create(name='testcategory')
 
@@ -26,8 +25,6 @@ class TestRepairRequestRegistration(TestCase):
             'description': 'detailed description',
         }
 
-        self.form = RepairRequestForm(self.data)
-
     def test_repair_request_page_loads_successfully(self):
         response = self.client.get(reverse('repairme-request'))
         assert response.status_code == 200
@@ -36,18 +33,8 @@ class TestRepairRequestRegistration(TestCase):
         response = self.client.get(reverse('repairme-request'))
         self.assertTemplateUsed(response, 'repairme/repair_request.html')
 
-    def test_form_is_valid(self):
-        assert self.form.is_valid() is True
-
-        form_saved = self.form.save()
-        assert form_saved.device_name == 'sakara'
-        assert form_saved.serial_number == 'vssvsvwv52qa'
-        assert form_saved.manufacturer == 'samsong'
-        assert form_saved.description == 'detailed description'
-        assert form_saved.photo == 'default.png'
-
     def test_repair_request_info_can_be_saved_to_db(self):
-        self.form.save()
+        self.client.post(reverse('repairme-request'), data=self.data)
         rep = Repairs.objects.all().first()
 
         assert Repairs.objects.count() == 1
