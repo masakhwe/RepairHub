@@ -8,7 +8,6 @@ class RepairRequestForm(ModelForm):
         model = Repairs
 
         fields = [
-            'owner',
             'device_name',
             'category',
             'serial_number',

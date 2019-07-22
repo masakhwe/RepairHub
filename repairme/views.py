@@ -12,6 +12,11 @@ class RepairRequestView(SuccessMessageMixin, CreateView):
     success_url = '/'
     success_message = 'Your Repair Request was Successfully Saved'
 
+    def form_valid(self, form_class):
+        '''To assign owner attribute the authenicated user'''
+        form_class.instance.owner = self.request.user
+        return super().form_valid(form_class)
+
 
 class HomeView(TemplateView):
     template_name = 'repairme/home.html'

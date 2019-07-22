@@ -10,14 +10,17 @@ class TestRepairRequestRegistration(TestCase):
     """
 
     def setUp(self):
-        self.owner = User.objects.create_user(username='testuser',
-                                              email='test@mail.com',
-                                              password='tester247')
+        self.test_user = User.objects.create_user(username='testuser',
+                                                  email='test@mail.com',
+                                                  password='tester247')
+
+        self.client.login(username='testuser',
+                          email='test@mail.com',
+                          password='tester247')
 
         self.category = Category.objects.create(name='testcategory')
 
         self.data = {
-            'owner': self.owner.id,
             'device_name': 'sakara',
             'category': self.category.id,
             'serial_number': 'vssvsvwv52qa',
@@ -38,6 +41,7 @@ class TestRepairRequestRegistration(TestCase):
         rep = Repairs.objects.all().first()
 
         assert Repairs.objects.count() == 1
+        assert rep.owner == self.test_user
         assert rep.device_name == 'sakara'
         assert rep.serial_number == 'vssvsvwv52qa'
         assert rep.manufacturer == 'samsong'
