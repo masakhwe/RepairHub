@@ -2,9 +2,10 @@ from django.urls import reverse
 from django.test import TestCase
 from django.contrib.auth.models import User
 from users.forms import UserRegistrationForm
-from users.views import Register
+# import pytest
 
 
+# @pytest.mark.skip(reason="testing new written tests")
 class TestUserRegistration(TestCase):
     """
     Tests if a new user can successfuly register and create a new account

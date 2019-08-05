@@ -2,8 +2,10 @@ from django.urls import reverse
 from django.test import TestCase
 from repairme.models import Repairs, Category
 from django.contrib.auth.models import User
+# import pytest
 
 
+# @pytest.mark.skip(reason='testing new written tests')
 class TestRepairRequestRegistration(TestCase):
     """
     This class tests if a user can successfully make a repair request
