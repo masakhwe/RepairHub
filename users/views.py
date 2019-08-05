@@ -1,22 +1,17 @@
+from django.views.generic.edit import CreateView
+from django.contrib.messages.views import SuccessMessageMixin
+from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
-from django.shortcuts import render, redirect
-from django.contrib import messages
+from django.shortcuts import render
 from .forms import UserRegistrationForm  # custom registration form
 
 
-def register(request):
-    if request.method == "POST":
-        form = UserRegistrationForm(request.POST)
-        if form.is_valid():
-            form.save()  # saves post data to the database
-            username = form.cleaned_data.get('username')
-            messages.success(request,
-                             f'Successfully created account for {username}')
-            return redirect('login')
-
-    else:
-        form = UserRegistrationForm()
-    return render(request, 'users/register.html', {'form': form})
+class Register(SuccessMessageMixin, CreateView):
+    model = User
+    form_class = UserRegistrationForm
+    template_name = 'users/register.html'
+    success_url = 'login'
+    success_message = 'Account Successfully created'
 
 
 @login_required()
