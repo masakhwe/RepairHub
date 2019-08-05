@@ -2,7 +2,7 @@ from django.urls import reverse
 from django.test import TestCase
 from django.contrib.auth.models import User
 from users.forms import UserRegistrationForm
-from users.views import register
+from users.views import Register
 
 
 class TestUserRegistration(TestCase):
@@ -26,11 +26,11 @@ class TestUserRegistration(TestCase):
         })
 
     def test_register_page_loads_successfully(self):
-        response = self.client.get(reverse(register))
+        response = self.client.get(reverse('register'))
         assert response.status_code == 200
 
     def test_right_template_used(self):
-        response = self.client.get(reverse(register))
+        response = self.client.get(reverse('register'))
         self.assertTemplateUsed(response, 'users/register.html')
 
     def test_can_check_for_valid_data(self):
@@ -47,7 +47,7 @@ class TestUserRegistration(TestCase):
         assert self.form_invalid.is_valid() is False
 
     def test_can_redirect_to_login(self):
-        response = self.client.post(reverse(register), data={
+        response = self.client.post(reverse('register'), data={
             'username': 'testuser1',
             'email': 'test@mail.com',
             'password1': 'assert2019',
