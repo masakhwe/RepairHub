@@ -156,4 +156,4 @@ LOGIN_REDIRECT_URL = 'repairme-home'
 
 '''enables redirect to login page when non-authenticated user
 trys to access restricted views'''
-LOGIN_URL = 'login'
+LOGIN_URL = 'login-user'

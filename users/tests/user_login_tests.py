@@ -16,11 +16,11 @@ class TestUserLogin(TestCase):
                                              password='access2019')
 
     def test_login_page_loads_successfully(self):
-        response = self.client.get(reverse('login'))
+        response = self.client.get(reverse('login-user'))
         assert response.status_code == 200
 
     def test_correct_template_used(self):
-        response = self.client.get(reverse('login'))
+        response = self.client.get(reverse('login-user'))
         self.assertTemplateUsed(response, 'users/login.html')
         self.assertTemplateNotUsed(response, 'users/register.html')
 
@@ -37,7 +37,7 @@ class TestUserLogin(TestCase):
         assert response is True
 
     def test_can_redirect_to_home(self):
-        response = self.client.post(reverse('login'), data={
+        response = self.client.post(reverse('login-user'), data={
                                     'username': 'logintester',
                                     'password': 'access2019'})
 

@@ -1,0 +1,13 @@
+{% extends 'repairme/base.html' %}
+{% load crispy_forms_tags %}
+{% block content %}
+    <div class="row justify-content-md-center border-bottom mb-3">
+        <h3>Current repair requests</h3>
+    </div>
+    <div>
+        {% for repair in repairs_request_list%}
+            <p class="mb-4"> {{repair.id}}.<a href="{% url 'repair-detail' pk=repair.id %}"> {{repair}}</a></p>
+        {% endfor %}
+    </div>
+
+{% endblock content %}

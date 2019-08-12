@@ -56,6 +56,6 @@ class TestUserRegistration(TestCase):
         })
 
         self.assertRedirects(response,
-                             reverse('login'),
+                             reverse('login-user'),
                              status_code=302,
                              target_status_code=200)

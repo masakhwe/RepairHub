@@ -18,6 +18,9 @@ from django.contrib.auth.views import LoginView, LogoutView
 from django.urls import path, include
 from users.views import Register, profile
 
+# enables loading and displaying of model images on webpage
+from django.conf.urls.static import static
+from django.conf import settings
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -25,7 +28,7 @@ urlpatterns = [
     path('register', Register.as_view(), name='register'),
 
     path('login', LoginView.as_view(template_name='users/login.html'),
-         name='login'),
+         name='login-user'),
 
     path('logout/', LogoutView.as_view(template_name='users/logout.html'),
          name='logout'),
@@ -34,3 +37,8 @@ urlpatterns = [
 
     path('', include('repairme.urls')),
 ]
+
+# enables loading and displaying of model images on webpage
+if settings.DEBUG:
+    urlpatterns += static(settings.MEDIA_URL,
+                          document_root=settings.MEDIA_ROOT)

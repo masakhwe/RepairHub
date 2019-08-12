@@ -1,8 +1,9 @@
 from django.views.generic.edit import CreateView
-from django.views.generic import TemplateView
+from django.views.generic import TemplateView, ListView, DetailView
 from repairme.models import Repairs
 from repairme.forms import RepairRequestForm
 from django.contrib.messages.views import SuccessMessageMixin
+from django.shortcuts import get_object_or_404
 
 
 class RepairRequestView(SuccessMessageMixin, CreateView):
@@ -20,3 +21,15 @@ class RepairRequestView(SuccessMessageMixin, CreateView):
 
 class HomeView(TemplateView):
     template_name = 'repairme/home.html'
+
+
+class RepairsListView(ListView):
+    model = Repairs
+    context_object_name = 'repairs_request_list'
+    template_name = 'repairme/repair_request_list.html'
+
+
+class RepairDetail(DetailView):
+    model = Repairs
+    context_object_name = 'repair_detail'
+    template_name = 'repairme/repair_detail.html'

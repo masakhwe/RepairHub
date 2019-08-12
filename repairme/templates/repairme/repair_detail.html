@@ -1,19 +1,20 @@
 {% extends 'repairme/base.html' %}
+{% load crispy_forms_tags %}
 {% block content %}
     <div class="container">
-        <div class="row">
-            <h1>Item name</h1>
+        <div class="row justify-content-md-center mb-3 mt-2 pt-3 pb-0">
+            <h2>{{repair_detail.device_name}}</h2>
         </div>
-        <div class="row">
-            <div class="col-8">
-                <h1>Photo</h1>
+        <div class="row border">
+            <div class="pl-0 col-6">
+                <img class="img-fluid" src="{{ repair_detail.photo.url }}">
             </div>
-            <div class=col-4>
-                <h1>Description</h1>
+            <div class="col">
+                <p class="border-bottom mt-5"><strong>Category:</strong> {{repair_detail.category}}</p>
+                <p class="border-bottom mt-5"><strong>Manufacturer:</strong> {{repair_detail.manufacturer}}</p>
+                <p class="border-bottom mt-5"><strong>Serial Number:</strong> {{repair_detail.serial_number}}</p>
+                <p class="mt-5"><strong>Fault Description:</strong> {{repair_detail.description}} </p>
             </div>
-        </div>
-        <div class="row">
-            <h1>fault narration</h1>
         </div>
     </div>
 {% endblock content %}

@@ -1,3 +1,5 @@
 from django.contrib import admin
+from repairme.models import Repairs, Category
 
-# Register your models here.
+admin.site.register(Repairs)
+admin.site.register(Category)

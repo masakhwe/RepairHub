@@ -21,26 +21,29 @@ class TestDetailedRepairRequest(TestCase):
 
         self.category = Category.objects.create(name='testcategory')
 
-        self.repair = Repairs.objects.create(device_name='sakara',
-                                             category=self.category.id,
+        self.repair = Repairs.objects.create(owner=self.test_user,
+                                             device_name='sakara',
+                                             category=self.category,
                                              serial_number='hghe4524awjkkk',
                                              manufacturer='manufact',
                                              description='how it happened')
 
-    def test_detailed_repair_request_page_loads_successfully(self):
-        response = self.client.get(reverse('repairme-detailed'))
+    def test_repairs_list_page_loads_successfully(self):
+        response = self.client.get(reverse('repairs_list'))
         assert response.status_code == 200
 
-    def test_right_template_used(self):
-        response = self.client.get(reverse('repairme-detailed'))
+    def test_detailed_repair_request_page_loads_successfully(self):
+        response = self.client.get(reverse('repair-detail', kwargs={'pk': self.repair.id}))
+        assert response.status_code == 200
+
+    def test_correct_template_for_repairs_list(self):
+        response = self.client.get(reverse('repairs_list'))
+        self.assertTemplateUsed(response, 'repairme/repair_request_list.html')
+
+    def test_correct_template_for_detailed_repair_request(self):
+        response = self.client.get(reverse('repair-detail', kwargs={'pk': self.repair.id}))
         self.assertTemplateUsed(response, 'repairme/repair_detail.html')
 
     def test_can_retrieve_data_from_db(self):
-        response = self.client.get(reverse('repairme-detailed'), {'pk': 1})
-
-        assert response.data.owner == self.test_user
-        assert response.data.device_name == 'sakara'
-        assert response.category == self.category.id
-        assert response.data.serial_number == 'hghe4524awjkkk'
-        assert response.data.manufacturer == 'manufact'
-        assert response.data.description == 'how it happened'
+        response = self.client.get(reverse('repair-detail', kwargs={'pk': self.repair.id}))
+        assert response.status_code == 200
