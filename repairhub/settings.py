@@ -78,12 +78,12 @@ WSGI_APPLICATION = 'repairhub.wsgi.application'
 if 'TRAVIS' in os.environ:
     DATABASES = {
         'default': {
-            'ENGINE': 'django.db.backends.postgresql_psycopg2',
-            'NAME': 'travisci',
-            'USER': 'postgres',
-            'PASSWORD': '',
-            'HOST': 'localhost',
-            'PORT': '',
+            'ENGINE': 'django.db.backends.postgresql',
+            'NAME': 'repairhub',
+            'USER': 'manu1',
+            'PASSWORD': 'password',
+            'HOST': '127.0.0.1',
+            'PORT': '5432',
         }
     }
 
@@ -92,8 +92,8 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'repairhub',
-        'USER': 'manu1',
-        'PASSWORD': 'password',
+        'USER': 'MANU',
+        'PASSWORD': 'manu2741',
         'HOST': '127.0.0.1',
         'PORT': '5432',
     }
