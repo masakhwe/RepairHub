@@ -75,6 +75,7 @@ WSGI_APPLICATION = 'repairhub.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/2.2/ref/settings/#databases
+"""
 if 'TRAVIS' in os.environ:
     DATABASES = {
         'default': {
@@ -86,7 +87,7 @@ if 'TRAVIS' in os.environ:
             'PORT': '5432',
         }
     }
-
+"""
 
 DATABASES = {
     'default': {
